@@ -8,7 +8,8 @@
         "spatie/laravel-schemaless-attributes": "^1.1"
     },
     "require-dev": {
-        "orchestra/testbench": "^3.6"
+        "orchestra/testbench": "^3.6",
+        "phpunit/phpunit": "^7.2"
     },
     "license": "MIT",
     "authors": [

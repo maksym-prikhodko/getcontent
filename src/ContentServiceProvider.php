@@ -6,7 +6,8 @@ class ContentServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/../config/getcontent.php', 'getcontent'
+            __DIR__ . '/../config/getcontent.php',
+            'getcontent'
         );
         $this->app->singleton(GetContent::class, function ($app) {
             return new GetContent(config('getconfig'));
