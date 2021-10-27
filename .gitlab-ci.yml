@@ -1,17 +1,24 @@
 image: lorisleiva/laravel-docker:latest
-cache:
-  key: ${CI_COMMIT_REF_SLUG}
-  paths:
-    - vendor/
+composer:
+  stage: build
+    - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
+  artifacts:
+    expire_in: 1 month
+    paths:
+      - vendor/
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}-composer
+    paths:
+      - vendor/
 codestyle:
   stage: test
   cache: {}
+  dependencies: []
   script:
     - phpcs --standard=PSR2 --extensions=php src
 phpunit:
   stage: test
+  dependencies:
+    - composer
   script:
-    - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
-    - cp .env.example .env
-    - php artisan key:generate
     - phpunit --coverage-text --colors=never
