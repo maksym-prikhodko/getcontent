@@ -11,7 +11,7 @@ class CreateGroupsTable extends Migration
             $table->string('name')->index();
             $table->string('slug')->index();
             $table->text('description')->nullable();
-            $table->schemalessAttributes('schema')->nullable();
+            $table->schemalessAttributes('model')->nullable();
             $table->nestedSet();
             $table->softDeletes();
             $table->timestamps();
@@ -22,6 +22,6 @@ class CreateGroupsTable extends Migration
         Schema::table('groups', function (Blueprint $table) {
             $table->dropNestedSet();
         });
-        Schema::dropIfExists('documents');
+        Schema::dropIfExists('groups');
     }
 }

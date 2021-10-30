@@ -2,14 +2,14 @@
 namespace MilkMedia\GetContent\Traits;
 use Illuminate\Database\Eloquent\Builder;
 use Spatie\SchemalessAttributes\SchemalessAttributes;
-trait HasSchemalessFields
+trait HasSchemalessContent
 {
-    public function getFieldsAttribute(): SchemalessAttributes
+    public function getContentAttribute(): SchemalessAttributes
     {
-        return SchemalessAttributes::createForModel($this, 'fields');
+        return SchemalessAttributes::createForModel($this, 'content');
     }
-    public function scopeWithFields(): Builder
+    public function scopeWithContent(): Builder
     {
-        return SchemalessAttributes::scopeWithSchemalessAttributes('fields');
+        return SchemalessAttributes::scopeWithSchemalessAttributes('content');
     }
 }

@@ -11,10 +11,10 @@ class CreateDocumentsTable extends Migration
             $table->string('name');
             $table->string('slug')->index();
             $table->text('description')->nullable();
-            $table->schemalessAttributes('model')->default('{}');
-            $table->schemalessAttributes('schema')->nullable();
+            $table->schemalessAttributes('content')->default('{}');
+            $table->schemalessAttributes('model')->nullable();
             $table->text('layout')->nullable();
-            $table->unsignedInteger('user_id')->nullable()->index();
+            $table->unsignedInteger('owner_id')->nullable()->index();
             $table->unsignedInteger('group_id')->nullable()->index();
             $table->dateTime('published_at')->nullable()->index();
             $table->softDeletes();

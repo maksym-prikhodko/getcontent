@@ -1,6 +1,9 @@
 <?php
 namespace MilkMedia\GetContent;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use MilkMedia\GetContent\Observers\DocumentObserver;
+use MilkMedia\GetContent\Observers\GroupObserver;
 class ContentServiceProvider extends ServiceProvider
 {
     public function register()
@@ -20,6 +23,7 @@ class ContentServiceProvider extends ServiceProvider
         ]);
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'getcontent');
-        $this->loadRoutesFrom(__DIR__ . '/routes/editor.php');
+        Document::observe(DocumentObserver::class);
+        Group::observe(GroupObserver::class);
     }
 }

@@ -1,18 +1,15 @@
 <?php
-namespace Tests\Feature;
-use App\Document;
-use App\Group;
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+namespace MilkMedia\GetContent\Test\Features;
+use MilkMedia\GetContent\Document;
+use MilkMedia\GetContent\Group;
+use MilkMedia\GetContent\Test\TestCase;
 class GroupsTest extends TestCase
 {
-    use RefreshDatabase;
     public function user_can_create_a_group()
     {
-        $this->actingAs($this->user)->post('api/groups', [
+        $this->withoutExceptionHandling()->actingAs($this->user)->post('api/groups', [
             'name' => 'Pages',
-            'schema' => [
+            'model' => [
                 'fields' => [
                     'content' => 'content'
                 ],
@@ -67,8 +64,8 @@ class GroupsTest extends TestCase
     {
         factory(Group::class)->create();
         factory(Group::class)->create(['parent_id' => 1, 'name' => 'Child Group']);
-        factory(Document::class, 2)->create(['user_id' => 1, 'group_id' => 1]);
-        $response = $this->actingAs($this->user)->get('api/groups/1?withChildren')
+        factory(Document::class, 2)->create(['owner_id' => 1, 'group_id' => 1]);
+        $response = $this->actingAs($this->user)->withoutExceptionHandling()->get('api/groups/1?withChildren')
             ->assertStatus(200)
             ->assertJsonStructure(['data' => [
                 'id',
