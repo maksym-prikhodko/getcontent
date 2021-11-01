@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use MilkMedia\GetContent\Observers\DocumentObserver;
 use MilkMedia\GetContent\Observers\GroupObserver;
-class ContentServiceProvider extends ServiceProvider
+class GetContentServiceProvider extends ServiceProvider
 {
     public function register()
     {

@@ -1,7 +1,7 @@
 <?php
 namespace MilkMedia\GetContent\Test;
 use Kalnoy\Nestedset\NestedSetServiceProvider;
-use MilkMedia\GetContent\ContentServiceProvider;
+use MilkMedia\GetContent\GetContentServiceProvider;
 use MilkMedia\GetContent\GetContent;
 use Spatie\SchemalessAttributes\SchemalessAttributesServiceProvider;
 abstract class TestCase extends \Orchestra\Testbench\TestCase
@@ -10,7 +10,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
     protected function getPackageProviders($app)
     {
         return [
-            ContentServiceProvider::class,
+            GetContentServiceProvider::class,
             SchemalessAttributesServiceProvider::class,
             NestedSetServiceProvider::class,
         ];
