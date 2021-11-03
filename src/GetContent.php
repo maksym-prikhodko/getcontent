@@ -8,20 +8,21 @@ class GetContent
     }
     public static function routes()
     {
-        Route::namespace('MilkMedia\GetContent\Http\Controllers\Api')
-            ->middleware(['middleware' => \Illuminate\Routing\Middleware\SubstituteBindings::class])
-            ->prefix('api')->group(function () {
-                Route::get('/documents', 'DocumentController@index');
-                Route::post('/documents', 'DocumentController@store');
-                Route::get('/documents/{document}', 'DocumentController@show');
-                Route::put('/documents/{document}', 'DocumentController@update');
-                Route::delete('/documents/{document}', 'DocumentController@destroy');
-                Route::get('/groups', 'GroupController@index');
-                Route::get('/groups/{group}', 'GroupController@show');
-                Route::post('/groups', 'GroupController@store');
-                Route::put('/groups/{group}', 'GroupController@update');
-                Route::delete('/groups/{group}', 'GroupController@destroy');
-                Route::get('/groups/{group}/documents', 'GroupDocumentsController@index');
-            });
+        Route::get('/documents', '\MilkMedia\GetContent\Http\Controllers\Api\DocumentController@index');
+        Route::post('/documents', '\MilkMedia\GetContent\Http\Controllers\Api\DocumentController@store');
+        Route::get('/documents/{document}', '\MilkMedia\GetContent\Http\Controllers\Api\DocumentController@show');
+        Route::put('/documents/{document}', '\MilkMedia\GetContent\Http\Controllers\Api\DocumentController@update');
+        Route::delete('/documents/{document}', '\MilkMedia\GetContent\Http\Controllers\Api\DocumentController@destroy');
+        Route::get('/groups', '\MilkMedia\GetContent\Http\Controllers\Api\GroupController@index');
+        Route::get('/groups/{group}', '\MilkMedia\GetContent\Http\Controllers\Api\GroupController@show');
+        Route::post('/groups', '\MilkMedia\GetContent\Http\Controllers\Api\GroupController@store');
+        Route::put('/groups/{group}', '\MilkMedia\GetContent\Http\Controllers\Api\GroupController@update');
+        Route::delete('/groups/{group}', '\MilkMedia\GetContent\Http\Controllers\Api\GroupController@destroy');
+        Route::get('/groups/{group}/documents',
+            '\MilkMedia\GetContent\Http\Controllers\Api\GroupDocumentsController@index');
+    }
+    public static function editorRoutes()
+    {
+        Route::view('editor', 'getcontent::editor.index');
     }
 }

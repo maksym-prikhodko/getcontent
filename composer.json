@@ -17,6 +17,7 @@
   },
   "require-dev": {
     "orchestra/testbench": "^3.6",
+    "orchestra/testbench-dusk": "^3.6",
     "phpunit/phpunit": "^7.2"
   },
   "autoload": {
@@ -33,7 +34,11 @@
     "laravel": {
       "providers": [
         "MilkMedia\\GetContent\\GetContentServiceProvider"
-      ]
+      ],
+      "aliases": {
+        "GetContent": "MilkMedia\\GetContent\\GetContent"
+      }
     }
-  }
+  },
+  "minimum-stability": "dev"
 }

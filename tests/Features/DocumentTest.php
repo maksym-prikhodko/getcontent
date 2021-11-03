@@ -7,7 +7,7 @@ class DocumentTest extends TestCase
 {
     public function user_can_create_document()
     {
-        $this->withoutExceptionHandling()->actingAs($this->user)->post('api/documents', [
+        $this->actingAs($this->user)->post('api/documents', [
             'name'    => 'Hello World',
             'content' => [
                 'fields' => [

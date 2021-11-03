@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="vendor/autoload.php"
+<phpunit bootstrap="./tests/bootstrap.php"
          backupGlobals="false"
          backupStaticAttributes="false"
          colors="true"
@@ -10,8 +10,14 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="GetContent Test Suite">
-            <directory>tests</directory>
+        <testsuite name="Browser">
+            <directory>./tests/Browser</directory>
+        </testsuite>
+        <testsuite name="Feature">
+            <directory>./tests/Features</directory>
+        </testsuite>
+        <testsuite name="Unit">
+            <directory>./tests/Unit</directory>
         </testsuite>
     </testsuites>
     <filter>

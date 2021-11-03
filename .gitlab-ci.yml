@@ -21,4 +21,4 @@ phpunit:
   dependencies:
     - composer
   script:
-    - phpunit --coverage-text --colors=never
+    - phpunit --coverage-text --colors=never --testsuite=Feature,Unit

@@ -20,7 +20,10 @@ class GetContentServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/../config/getcontent.php' => config_path('getcontent.php'),
-        ]);
+        ], 'config');
+        $this->publishes([
+            __DIR__ . '/../assets' => public_path('milkmedia/getcontent'),
+        ], 'public');
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'getcontent');
         Document::observe(DocumentObserver::class);
