@@ -1,0 +1,7 @@
+.document {
+  @apply flex items-center justify-center bg-white border rounded-lg shadow w-32 no-underline text-grey-darker;
+  height: 164px;
+  &:hover {
+    @apply shadow-md cursor-pointer;
+  }
+}

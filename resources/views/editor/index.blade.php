@@ -1,7 +1,10 @@
 @extends('getcontent::layouts.default')
+@push('styles')
+    <link rel="stylesheet" href="{{asset('getcontent/app.css')}}">
+@endpush
 @push('scripts')
-    <script src="{{asset('milkmedia/getcontent/app.js')}}"></script>
+    <script src="{{asset('getcontent/app.js')}}"></script>
 @endpush
 @section('content')
-    <getcontent></getcontent>
+    <div id="getcontent"></div>
 @endsection

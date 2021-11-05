@@ -24,5 +24,7 @@ class GetContent
     public static function editorRoutes()
     {
         Route::view('editor', 'getcontent::editor.index');
+        Route::get('getcontent/app.js', '\MilkMedia\GetContent\Http\Controllers\EditorAssetsController@js');
+        Route::get('getcontent/app.css', '\MilkMedia\GetContent\Http\Controllers\EditorAssetsController@css');
     }
 }

@@ -1,0 +1,16 @@
+.default-screen {
+  @apply absolute pin bg-grey-lightest p-8;
+}
+.screen-enter-active {
+  @apply rounded shadow;
+  transition: all .3s cubic-bezier(0.39, 0.68, 0.46, 1.3);
+}
+.screen-leave-active {
+  @apply rounded shadow;
+  transition: all .2s cubic-bezier(0.39, 0.68, 0.46, 1.3);
+}
+.screen-enter,
+.screen-leave-to {
+  transform: scale(0.98) translateY(5px);
+  opacity: 0;
+}

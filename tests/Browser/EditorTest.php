@@ -6,7 +6,8 @@ class EditorTest extends BrowserTestCase {
     {
         $this->browse(function ($browser) {
             $browser->visit('/editor')
-                ->assertPresent('.document');
+                ->assertPresent('.document')
+                ->assertSee('My New Document');
         });
     }
 }

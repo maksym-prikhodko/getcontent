@@ -1,0 +1,35 @@
+{
+  "name": "getcontent",
+  "version": "1.0.0",
+  "description": "GetContent CMS is a [Laravel](https://laravel.com) package that provides an unstructured, headless content API to use within your own Laravel project. It comes with an user interface to manage content and media out of the box.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "dev": "NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "hot": "NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "production": "NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/milkmedia/getcontent.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/milkmedia/getcontent/issues"
+  },
+  "homepage": "https://gitlab.com/milkmedia/getcontent#README",
+  "dependencies": {
+    "laravel-mix": "^2.1.11",
+    "lodash": "^4.17.10",
+    "prettier": "^1.13.7",
+    "tailwindcss": "^0.6.1",
+    "vue": "^2.5.16",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
+  }
+}
