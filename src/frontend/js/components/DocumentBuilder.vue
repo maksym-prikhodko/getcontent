@@ -4,9 +4,10 @@
             <input class="text-2xl appearance-none bg-transparent leading-normal outline-none flex-grow" placeholder="New Document"
                 v-model="document.name">
             <section class="text-xs leading-normal font-bold">
-                <router-link to="/documents" class="text-grey-dark hover:text-grey-darker no-underline mx-2">Close</router-link>
-                <router-link to="/documents" class="bg-green hover:bg-green-dark text-white py-2 px-4 rounded-full no-underline">Save Draft</router-link>
-                <router-link to="/documents" class="bg-blue hover:bg-blue-dark text-white py-2 px-4 rounded-full no-underline">Publish Now</router-link>
+                <button class="text-grey-dark hover:text-grey-darker no-underline mx-2">Close</button>
+                <button class="bg-green hover:bg-green-dark text-white py-2 px-4 rounded-full no-underline"
+                    @click="save">Save</button>
+                <button class="bg-blue hover:bg-blue-dark text-white py-2 px-4 rounded-full no-underline">Publish Now</button>
             </section>
         </nav>
         <article class="p-6 max-w-xl mx-auto">
@@ -49,7 +50,10 @@ export default {
         componentName = "UnknownFieldComponent";
       }
       return componentName;
-    }
+    },
+      save() {
+          this.$store.dispatch('Documents/saveDocument', this.document)
+      }
   }
 };
 </script>

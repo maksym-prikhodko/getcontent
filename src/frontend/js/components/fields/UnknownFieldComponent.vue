@@ -4,10 +4,10 @@
             Unknown Field
             <strong>{{field.type}}</strong>
         </p>
-        <div v-for="(value, key) in field.model" class="flex">
-            <strong>{{key}}</strong>
-            <input type="text" v-model="field.model[key]">
-        </div>
+        <label v-for="(value, key) in field.model" class="flex items-center p-2">
+            <strong class="w-1/5 text-right mr-4">{{key}}</strong>
+            <input type="text" v-model="field.model[key]" class="flex-grow p-2 bg-yellow-lighter">
+        </label>
     </div>
 </template>
 <script>

@@ -21,6 +21,20 @@ export default {
     }
   },
   mutations: {
-    newDocument(state, document) {}
-  }
+      addDocument(state, document) {
+        state.all.push(document)
+      }
+  },
+    actions: {
+      saveDocument ({commit}, document) {
+       document.id = uuidv4()
+          commit('addDocument', document)
+      }
+    }
 };
+function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    })
+}
