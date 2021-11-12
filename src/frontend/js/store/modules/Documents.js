@@ -1,40 +1,48 @@
+import uuidv4 from "uuid/v4";
+import { cloneDeep, isSet } from "lodash";
 export default {
   namespaced: true,
   state: {
-    all: []
+    all: [],
+    blankDocument: {
+      name: null,
+      group_id: null,
+      content: {
+        fields: [{ type: "html", model: "" }]
+      },
+      status: "draft",
+      template: null
+    }
   },
   getters: {
     all: state => {
       return state.all;
     },
-    blankDocument: state => {
-      return {
-        name: null,
-        slug: null,
-        description: null,
-        owner_id: null,
-        group_id: null,
-        content: {
-          fields: []
-        }
-      };
+    blankDocument: state => () => {
+      return cloneDeep(state.blankDocument);
+    },
+    byUuid: state => uuid => {
+      return state.all.find(document => document.uuid === uuid);
     }
   },
   mutations: {
-      addDocument(state, document) {
-        state.all.push(document)
-      }
-  },
-    actions: {
-      saveDocument ({commit}, document) {
-       document.id = uuidv4()
-          commit('addDocument', document)
-      }
+    addDocument(state, document) {
+      state.all.push(document);
+    },
+    updateDocument(state, {uuid, document}) {
+      let documentIndex = state.all.findIndex(
+        document => document.uuid === uuid
+      );
+      state.all[documentIndex] = document;
     }
+  },
+  actions: {
+    saveDocument({ commit }, document) {
+      if (document.uuid) {
+        return commit("updateDocument", {uuid: document.uuid, document});
+      }
+      document.uuid = uuidv4();
+      return commit("addDocument", document);
+    }
+  }
 };
-function uuidv4() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-        return v.toString(16);
-    })
-}

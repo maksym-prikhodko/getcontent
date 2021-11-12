@@ -1,8 +1,30 @@
 <template>
     <section class="bg-white rounded p-3">
-        <textarea class="w-full outline-none" placeholder="Type something great."></textarea>
+        <quill-editor v-model="field.model" :options="editorOption"></quill-editor>
     </section>
 </template>
 <script>
-export default {};
+import { quillEditor } from "vue-quill-editor";
+export default {
+  props: {
+    field: {
+      required: true
+    }
+  },
+  data: () => ({
+    editorOption: {
+      theme: "bubble",
+      modules: {
+        toolbar: [
+          ["bold", "italic", "underline", "strike"],
+          [{ list: "ordered" }, { list: "bullet" }],
+          [{ header: [1, 2, 3, 4, 5, 6, false] }]
+        ]
+      }
+    }
+  }),
+  components: {
+    quillEditor
+  }
+};
 </script>

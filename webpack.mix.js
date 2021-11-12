@@ -6,4 +6,5 @@ mix
     .options({
         processCssUrls: false,
         postCss: [tailwindcss('./tailwind.js')],
-    });
+    })
+    .sourceMaps();

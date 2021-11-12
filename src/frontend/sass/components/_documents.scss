@@ -1,6 +1,8 @@
 .document {
-  @apply flex items-center justify-center bg-white border rounded-lg shadow w-32 no-underline text-grey-darker;
-  height: 164px;
+  @apply flex flex-col items-center justify-center bg-white border rounded shadow no-underline text-grey-darker overflow-hidden relative;
+  height: 134px;
+  width: 100px;
+  transition: box-shadow 0.15s ease;
   &:hover {
     @apply shadow-md cursor-pointer;
   }
