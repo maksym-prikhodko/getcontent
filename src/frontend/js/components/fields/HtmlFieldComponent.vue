@@ -1,6 +1,10 @@
 <template>
     <section class="bg-white rounded p-3">
-        <quill-editor v-model="field.model" :options="editorOption"></quill-editor>
+        <quill-editor
+          v-model="field.model"
+          :options="editorOption"
+          class="select-text"
+        ></quill-editor>
     </section>
 </template>
 <script>
