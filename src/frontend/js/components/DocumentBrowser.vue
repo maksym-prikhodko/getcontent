@@ -22,6 +22,9 @@ export default {
     ...mapGetters("Documents", {
       documents: "all"
     })
+  },
+  created () {
+    this.$store.dispatch("Documents/loadDocuments")
   }
 };
 </script>

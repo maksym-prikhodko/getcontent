@@ -1,5 +1,6 @@
 <?php
 namespace MilkMedia\GetContent\Observers;
+use Illuminate\Support\Str;
 use MilkMedia\GetContent\Group;
 class GroupObserver
 {
@@ -7,6 +8,9 @@ class GroupObserver
     {
         if (!$group->slug) {
             $group->slug = str_slug($group->name);
+        }
+        if (!$group->uuid) {
+            $group->uuid = (string) Str::uuid();
         }
     }
 }

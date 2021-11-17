@@ -1,5 +1,6 @@
 import uuidv4 from "uuid/v4";
-import { cloneDeep, isSet } from "lodash";
+import { cloneDeep, isSet, remove } from "lodash";
+import api from "../../api";
 export default {
   namespaced: true,
   state: {
@@ -26,23 +27,58 @@ export default {
     }
   },
   mutations: {
+    setAll(state, documents) {
+      state.all = documents;
+    },
     addDocument(state, document) {
       state.all.push(document);
     },
-    updateDocument(state, {uuid, document}) {
+    updateDocument(state, { uuid, document }) {
       let documentIndex = state.all.findIndex(
         document => document.uuid === uuid
       );
       state.all[documentIndex] = document;
+    },
+    removeDocument(state, uuid) {
+      state.all = remove(state.all, document => document.uuid === uuid)
     }
   },
   actions: {
+    loadDocuments({ commit }) {
+      return new Promise((resolve, reject) => {
+        api.get("documents").then(payload => {
+          resolve();
+          return commit("setAll", payload.data.data);
+        }, reject);
+      });
+    },
     saveDocument({ commit }, document) {
-      if (document.uuid) {
-        return commit("updateDocument", {uuid: document.uuid, document});
-      }
-      document.uuid = uuidv4();
-      return commit("addDocument", document);
+      return new Promise((resolve, reject) => {
+        if (document.id) {
+          return api.put(`documents/${document.id}`, document).then(payload => {
+            resolve();
+            commit("updateDocument", {
+              uuid: document.uuid,
+              document: payload.data.data
+            });
+          }, reject);
+        }
+        document.uuid = uuidv4();
+        return api.post("documents", document).then(payload => {
+          resolve();
+          commit("addDocument", payload.data.data);
+        }, reject);
+      });
+    },
+    deleteDocument({ commit }, document) {
+      return new Promise((resolve, reject) => {
+        return api
+          .delete(`documents/${document.id}`, document)
+          .then(payload => {
+            resolve();
+            commit("removeDocument", { uuid: document.uuid });
+          }, reject);
+      });
     }
   }
 };

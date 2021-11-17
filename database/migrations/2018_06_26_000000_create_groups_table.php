@@ -8,6 +8,7 @@ class CreateGroupsTable extends Migration
     {
         Schema::create('groups', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('uuid', 36)->index();
             $table->string('name')->index();
             $table->string('slug')->index();
             $table->text('description')->nullable();

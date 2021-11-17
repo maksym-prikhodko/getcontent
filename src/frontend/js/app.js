@@ -2,9 +2,13 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import routes from "./routes";
 import store from "./store";
+import VueSnackbar from "vue-snack";
 import MainNav from "./components/MainNav";
 Vue.use(VueRouter);
 const router = new VueRouter({ routes });
+Vue.use(VueSnackbar, {
+  position: "top"
+});
 Vue.component("main-nav", MainNav);
 new Vue({
   router,

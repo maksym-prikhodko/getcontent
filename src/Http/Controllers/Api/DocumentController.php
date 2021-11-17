@@ -16,9 +16,10 @@ class DocumentController extends Controller
         $valid = $request->validate([
             'name'     => 'required|string',
             'slug'     => 'string|nullable',
+            'uuid'     => 'string|nullable|unique:documents,uuid',
             'content'  => 'array',
             'model'    => 'array',
-            'group_id' => 'exists:groups,id',
+            'group_id' => 'nullable|exists:groups,id',
         ]);
         $document = Document::create(array_merge($valid, ['owner_id' => Auth::id()]));
         return response()->json(['data' => $document], 201);

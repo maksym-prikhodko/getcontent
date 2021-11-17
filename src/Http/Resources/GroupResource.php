@@ -6,6 +6,7 @@ class GroupResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'uuid'      => $this->uuid,
             'id'        => $this->id,
             'parent_id' => $this->parent_id,
             'name'      => $this->name,

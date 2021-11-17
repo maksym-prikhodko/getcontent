@@ -1,5 +1,6 @@
 <?php
 namespace MilkMedia\GetContent\Observers;
+use Illuminate\Support\Str;
 use MilkMedia\GetContent\Document;
 class DocumentObserver
 {
@@ -7,6 +8,9 @@ class DocumentObserver
     {
         if (!$document->slug) {
             $document->slug = str_slug($document->name);
+        }
+        if (!$document->uuid) {
+            $document->uuid = (string) Str::uuid();
         }
     }
 }
