@@ -24,8 +24,10 @@
         </button>
       </footer>
     </article>
-    <footer class="p-6 max-w-xl mx-auto">
-      <button class="text-sm text-grey hover:text-red" v-if="document.id"
+    <footer class="p-6 max-w-xl mx-auto text-xs text-grey" v-if="document.id">
+      <p class="mb-2">Document UUID: <span class="select-text font-mono">{{document.uuid}}</span></p>
+      <p class="mb-2">Created: {{document.created_at}}</p>
+      <button class="p-2 -ml-2 rounded text-sm text-grey hover:text-white hover:bg-red"
               @click="remove">Delete this Document
       </button>
     </footer>
