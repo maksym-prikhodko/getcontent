@@ -2,7 +2,7 @@
   <div class="default-screen p-0" v-if="document">
     <nav class="flex border-b items-center justify-between p-4">
       <input class="text-2xl appearance-none bg-transparent leading-normal outline-none flex-grow"
-             placeholder="New Document"
+             placeholder="Give the document a name…"
              v-model="document.name">
       <section class="text-sm leading-none">
         <button class="text-grey-dark hover:text-grey-darker no-underline mr-4"
@@ -45,6 +45,9 @@ export default {
   components: fieldComponents,
   props: {
     uuid: {
+      default: null
+    },
+    groupUuid: {
       default: null
     }
   },

@@ -382,6 +382,13 @@ module.exports = {
   plugins: [
     require('tailwindcss/plugins/container')({
     }),
+    require('tailwindcss-aspect-ratio')({
+      ratios: {
+        'square': [1, 1],
+        '4/3': [4, 3],
+        '3/4': [3, 4],
+      }
+    }),
   ],
   options: {
     prefix: '',

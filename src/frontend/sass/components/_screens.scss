@@ -1,5 +1,5 @@
 .default-screen {
-  @apply absolute pin bg-grey-lightest p-8;
+  @apply absolute pin bg-grey-lightest;
 }
 .screen-enter-active {
   @apply rounded shadow;

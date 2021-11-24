@@ -15,7 +15,7 @@ class GroupController extends Controller
     {
         $valid = $request->validate([
             'name'      => 'required|string',
-            'parent_id' => 'numeric|exists:groups|nullable',
+            'parent_id' => 'numeric|exists:groups,id|nullable',
             'schema'    => 'array',
         ]);
         $group = Group::create($valid);

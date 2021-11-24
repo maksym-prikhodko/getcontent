@@ -1,5 +1,5 @@
 import uuidv4 from "uuid/v4";
-import { cloneDeep, isSet, remove } from "lodash";
+import { cloneDeep, isSet, remove, filter } from "lodash";
 import api from "../../api";
 export default {
   namespaced: true,
@@ -24,6 +24,12 @@ export default {
     },
     byUuid: state => uuid => {
       return state.all.find(document => document.uuid === uuid);
+    },
+    inRoot: state => {
+      return filter(state.all, document => document.group_id === null);
+    },
+    inGroup: state => uuid => {
+      return find(state.all, document => document.group_id === uuid);
     }
   },
   mutations: {
