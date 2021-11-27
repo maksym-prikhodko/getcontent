@@ -54,18 +54,27 @@ export default {
   data: () => ({
     document: null
   }),
+  computed: {
+    group() {
+      if (this.document.group_id) {
+        return this.$store.getters["Groups/byId"](this.document.group_id);
+      }
+      if (this.groupUuid) {
+        return this.$store.getters["Groups/byUuid"](this.groupUuid);
+      }
+      return null;
+    }
+  },
   created() {
     if (this.uuid) {
       this.document = this.$store.getters["Documents/byUuid"](this.uuid);
     } else {
       this.document = this.$store.getters["Documents/blankDocument"]();
+      this.document.group_id = this.group ? this.group.id : null;
     }
     if (this.document.content === undefined) {
       this.document.content = { fields: [] };
     }
-  },
-  watch: {
-    document: value => {}
   },
   methods: {
     getFieldComponentName(fieldType) {
@@ -76,7 +85,13 @@ export default {
       return componentName;
     },
     close() {
-      this.$router.push("/documents");
+      if (this.group) {
+        return this.$router.push({
+          name: "BrowseGroup",
+          params: { uuid: this.group.uuid }
+        });
+      }
+      return this.$router.push({ name: "BrowseDocuments" });
     },
     save() {
       this.$store.dispatch("Documents/saveDocument", this.document).then(
@@ -95,7 +110,10 @@ export default {
           this.$router.push("/documents");
         },
         () => {
-          this.$snack.danger({ text: "Failed to delete document", button: "Ok" });
+          this.$snack.danger({
+            text: "Failed to delete document",
+            button: "Ok"
+          });
         }
       );
     }

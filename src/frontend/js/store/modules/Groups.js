@@ -20,11 +20,14 @@ export default {
     byUuid: state => uuid => {
       return state.all.find(group => group.uuid === uuid);
     },
+    byId: state => id => {
+      return state.all.find(group => group.id === id);
+    },
     inRoot: state => {
       return filter(state.all, group => group.parent_id === null);
     },
-    inGroup: state => uuid => {
-      return filter(state.all, group => group.parent_id === uuid);
+    inGroup: state => id => {
+      return filter(state.all, group => group.parent_id === id);
     }
   },
   mutations: {

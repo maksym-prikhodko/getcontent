@@ -28,8 +28,8 @@ export default {
     inRoot: state => {
       return filter(state.all, document => document.group_id === null);
     },
-    inGroup: state => uuid => {
-      return find(state.all, document => document.group_id === uuid);
+    inGroup: state => id => {
+      return filter(state.all, document => document.group_id === id);
     }
   },
   mutations: {

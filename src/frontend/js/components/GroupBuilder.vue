@@ -54,7 +54,13 @@ export default {
   },
   methods: {
     close() {
-      this.$router.push("/documents");
+      if (this.parentGroup) {
+        return this.$router.push({
+          name: "BrowseGroup",
+          params: { uuid: this.parentGroup.uuid }
+        });
+      }
+      return this.$router.push({ name: "BrowseDocuments" });
     },
     save() {
       this.$store.dispatch("Groups/saveGroup", this.group).then(
@@ -70,7 +76,7 @@ export default {
       this.$store.dispatch("Groups/deleteGroup", this.group).then(
         () => {
           this.$snack.success({ text: "Group deleted", button: "Ok" });
-          this.$router.push("/groups");
+          this.close();
         },
         () => {
           this.$snack.danger({ text: "Failed to delete group", button: "Ok" });

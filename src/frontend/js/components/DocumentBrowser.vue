@@ -6,6 +6,7 @@
       <router-link :to="{name: 'BrowseGroup', params: {uuid: uuid} }" class="breadcrumb-link" v-if="group">
         {{group.name}}
       </router-link>
+      <router-link v-if="group" :to="{name: 'EditGroup', params: {uuid: group.uuid}}" class="breadcrumb-link rounded-full bg-grey text-xs px-2 py-1 text-white hover:bg-blue">Edit Group</router-link>
     </nav>
     <div class="p-8">
       <p class="mb-8 text-lg text-grey-darker">Documents</p>
@@ -50,14 +51,14 @@ export default {
   },
   computed: {
     documents() {
-      if (this.uuid) {
-        return this.$store.getters["Documents/inGroup"](this.uuid);
+      if (this.group) {
+        return this.$store.getters["Documents/inGroup"](this.group.id);
       }
       return this.$store.getters["Documents/inRoot"];
     },
     groups() {
-      if (this.uuid) {
-        return this.$store.getters["Groups/inGroup"](this.uuid);
+      if (this.group) {
+        return this.$store.getters["Groups/inGroup"](this.group.id);
       }
       return this.$store.getters["Groups/inRoot"];
     },
